@@ -1,2 +1,10 @@
 #!/bin/bash
-find . -type d -exec chmod a+x {} \;
+
+for dir in *
+do
+  if [ -d "$dir" ]
+  then
+    chmod a+x "$dir"
+  fi
+done
+
