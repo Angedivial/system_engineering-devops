@@ -1,0 +1,7 @@
+  GNU nano 8.4                          8-cwd_state
+
+
+
+
+#!/bin/bash
+ls -la > lscwdcontent
