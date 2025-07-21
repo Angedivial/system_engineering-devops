@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Script to list all running processes with hierarchy and detailed info
 
 ps -eo user,pid,pcpu,pmem,vsz,rss,tty,stat,start,time,cmd --forest
