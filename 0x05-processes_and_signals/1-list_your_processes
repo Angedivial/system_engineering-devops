@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Script to display all currently running processes with hierarchy and detailed info
+# Displays all running processes in full format for Git Bash on Windows
 
-ps -eo user:15,lstart,cmd --forest | awk 'NR==1 {$2="STARTED"; print "USER", $2, "CMD"; next} {printf "%-15s %s %s\n", $1, $2" "$3" "$4" "$5" "$6, substr($0, index($0,$7))}'
-
+ps -ef
