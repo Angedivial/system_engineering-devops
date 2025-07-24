@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
-# Display PID and name of processes containing "bash" without using pgrep or ps
+# Display the PID and executable path of processes containing "bash"
 
 for pid in /proc/[0-9]*; do
-  cmd=$(cat "$pid/cmdline" 2>/dev/null | tr '\0' ' ')
-  if [[ "$cmd" == *bash* ]]; then
-    proc_name=$(basename "$cmd")
-    echo "$(basename "$pid") $proc_name"
+  exe=$(readlink "$pid/exe" 2>/dev/null)
+  if [[ "$exe" == *bash* ]]; then
+    echo "$(basename "$pid") $exe"
   fi
 done
 
