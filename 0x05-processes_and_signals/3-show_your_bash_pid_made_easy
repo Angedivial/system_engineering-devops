@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
-# Displays PID and full path of all bash processes
-ps -eo pid,args | grep '[b]ash' | awk '{print $1, $2}'
+# Display PID and name of processes containing "bash" without using pgrep or ps
+
+for pid in /proc/[0-9]*; do
+  cmd=$(cat "$pid/cmdline" 2>/dev/null | tr '\0' ' ')
+  if [[ "$cmd" == *bash* ]]; then
+    proc_name=$(basename "$cmd")
+    echo "$(basename "$pid") $proc_name"
+  fi
+done
 

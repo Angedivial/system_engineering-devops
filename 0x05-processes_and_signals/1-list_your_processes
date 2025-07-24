@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# Displays all running processes in full format for Git Bash on Windows
+# Displays all users running processes
 
-ps -ef
+ps -eo uid --no-headers | sort | uniq
