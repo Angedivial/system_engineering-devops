@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Display the PID and executable path of processes containing "bash"
+# Displays the PID and full path of all processes with "bash" in their name
 
 for pid in /proc/[0-9]*; do
-  exe=$(readlink "$pid/exe" 2>/dev/null)
-  if [[ "$exe" == *bash* ]]; then
-    echo "$(basename "$pid") $exe"
-  fi
+    exe_path=$(readlink -f "$pid/exe" 2>/dev/null)
+    if [[ "$exe_path" == *bash* ]]; then
+        echo "$(basename "$pid") $exe_path"
+    fi
 done
 
