@@ -1,10 +1,4 @@
 #!/usr/bin/env bash
-# Displays the PID and full path of all processes with "bash" in their name
+# A Bash script that displays the PID and process name of processes containing the word "bash"
 
-for pid in /proc/[0-9]*; do
-    exe_path=$(readlink -f "$pid/exe" 2>/dev/null)
-    if [[ "$exe_path" == *bash* ]]; then
-        echo "$(basename "$pid") $exe_path"
-    fi
-done
-
+grep bash /proc/*/comm 2>/dev/null | cut -d'/' -f3- | awk -F: '{print $1, $2}'
